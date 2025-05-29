@@ -1,0 +1,73 @@
+## Visual Studio ##
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Build results ##
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+Generated\ Files/
+
+# Rider
+.idea/
+
+## NuGet Packages ##
+*.nupkg
+*.snupkg
+packages/
+*.nuspec
+project.lock.json
+project.assets.json
+*.nuget.props
+*.nuget.targets
+
+# VS Code
+.vscode/
+
+## Windows image cache files ##
+Thumbs.db
+ehthumbs.db
+
+## WPF specific ##
+*.g.cs
+*.g.i.cs
+*.i.cs
+*.xaml.cs (keep this only if you don't edit code-behind directly, optional)
+
+## Backup & cache ##
+*.bak
+*.cache
+*.tmp
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Test Results
+TestResults/
+*.VisualState.xml
+*.vsp
+*.vspx
+*.sap
+*.coverage
+*.coveragexml
+
+# Other IDE files
+*.idea/
+
+# Local History for JetBrains products
+.localhistory/
+
+# User-specific files
+*.userprefs
+
+# DotCover
+.idea/.dotCover
+
+# Publish profiles
+Properties/PublishProfiles/

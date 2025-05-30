@@ -66,8 +66,8 @@ namespace WpfApp1.ViewModel
                 Charakter selectedCharakter = SelectedCharakter;
                     CharakterReposytory.DeleteCharakter(selectedCharakter);
                     Charakters.Remove(selectedCharakter);
-                
-            
+
+                    OnPropertyChanged(nameof(Charakters));
         }
 
 
@@ -81,6 +81,9 @@ namespace WpfApp1.ViewModel
             charakterWindow.DataContext = new CharakterViewModel(charakter, CharakterReposytory);
 
                 charakterWindow.ShowDialog();
+
+            Charakters = new ObservableCollection<Charakter>(CharakterReposytory.GetCharaktersByPlayerId(_selectedPlayer.Id));
+            OnPropertyChanged(nameof(Charakters));
 
         }
 

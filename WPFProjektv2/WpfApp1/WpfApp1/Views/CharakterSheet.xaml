@@ -7,7 +7,7 @@
         xmlns:vm="clr-namespace:WpfApp1.ViewModel"
         Style="{StaticResource {x:Type Window}}"
         mc:Ignorable="d"
-        Title="CharakterSheet" Height="600" Width="800">
+        Title="CharakterSheet" Height="650" Width="1000">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -113,9 +113,16 @@
 
             <Button Content="Zapisz Zmiany" Command="{Binding SaveChangesCommand}" Margin="5"/>
 
-            <Button Content="Wykonaj rzut" Command="{Binding RollCommand}" Margin="5"></Button>
+            <StackPanel Orientation="Vertical" Margin="5">
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="Mod:" VerticalAlignment="Center" />
+                    <TextBox Width="50" Text="{Binding RollModifier}" Margin="0 5 0 0" VerticalAlignment="Center"/>
+            </StackPanel>
+                
+            <Button Content="Wykonaj rzut" Height="40"  Command="{Binding RollCommand}" Margin="5"></Button>
+        </StackPanel>
 
-            <StackPanel >
+        <StackPanel >
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="k6:"/>
                     <TextBox Width="50" Text="{Binding k6Count}"/>

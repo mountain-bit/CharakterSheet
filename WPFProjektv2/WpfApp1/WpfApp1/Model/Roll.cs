@@ -33,7 +33,18 @@ namespace WpfApp1.Model
 
         public int makeRoll(int k6Count = 0)
         {
-            this.Description = $"{this.SkillName} Wynik: {this.BaseValue}+{this.Modifier}";
+            this.Description = $"{this.SkillName} Wynik: {this.BaseValue}";
+            if(this.Modifier != 0)
+            {
+                if (this.Modifier > 0)
+                {
+                    this.Description += $"+{this.Modifier}";
+                }
+                else
+                {
+                    this.Description += $"{this.Modifier}";
+                }
+            }
             bool k6 = false ;
             if (this.SkillName.Equals("Damage") || this.SkillName.Equals("Humanity lost"))
             {

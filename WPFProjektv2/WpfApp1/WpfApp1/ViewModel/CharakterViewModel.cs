@@ -149,6 +149,8 @@ namespace WpfApp1.ViewModel
 
         public int k6Count { get; set; }
 
+        public int RollModifier { get; set; }
+
 
 
         public CharakterViewModel(Charakter charakter, CharakterReposytory charakterReposytory)
@@ -225,7 +227,7 @@ namespace WpfApp1.ViewModel
             roll.SkillName = SelectedSkill.Name;
             //skill + stats value
             roll.BaseValue = SelectedSkill.Value +( this.Charakter.Stats.FirstOrDefault(s => s.Name == SelectedSkill.BaseStat)?.Value ?? 0);
-            roll.Modifier = 0;
+            roll.Modifier = RollModifier;
             roll.Dificulty = 13; // Default difficulty, can be changed later
 
             roll.makeRoll();

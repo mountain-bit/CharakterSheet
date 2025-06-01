@@ -20,6 +20,7 @@ namespace WpfApp1.ViewModel
 
         private Player _selectedPlayer;
 
+
         public Player SelectedPlayer
         {
             get { return _selectedPlayer; }
@@ -29,11 +30,24 @@ namespace WpfApp1.ViewModel
                 OnPropertyChanged();
                 //SelectedCharacterInfo = _selectedPlayer.Name;
                 OnPropertyChanged(nameof(SelectedCharacterInfo));
-                Charakters= new ObservableCollection<Charakter>(CharakterReposytory.GetCharaktersByPlayerId(_selectedPlayer.Id));
-                OnPropertyChanged(nameof(Charakters));
+                if (_selectedPlayer == null)
+                {
+                    Charakters = new ObservableCollection<Charakter>();
+                    OnPropertyChanged(nameof(Charakters));
+
+                }
+                else 
+                { 
+                    Charakters = new ObservableCollection<Charakter>(CharakterReposytory.GetCharaktersByPlayerId(_selectedPlayer.Id));
+                    OnPropertyChanged(nameof(Charakters));
+                 }
 
             }
         }
+
+        public string NewPlayerName { get; set; }
+
+
 
         public Charakter SelectedCharakter { get; set; }
 
@@ -43,6 +57,49 @@ namespace WpfApp1.ViewModel
         public ICommand ShowSelectedCharakterCommand { get; set; }
 
         public ICommand RemoveSelectedCharakterCommand { get; set; }
+
+        public ICommand AddPlayerCommand { get; set; }
+
+        public ICommand RemoveSelectedPlayerCommand { get; set; }
+
+        public ICommand UpdatePlayerCommand { get; set; }
+
+        public void AddPlayer()
+        {
+            if (!string.IsNullOrWhiteSpace(NewPlayerName))
+            {
+                Player newPlayer = new Player { Name = NewPlayerName };
+                CharakterReposytory.AddPlayer(newPlayer);
+                Players.Add(newPlayer);
+                OnPropertyChanged(nameof(Players));
+                NewPlayerName = string.Empty;
+                OnPropertyChanged(nameof(NewPlayerName));
+            }
+        }
+
+        public void RemoveSelectedPlayer()
+        {
+            if (_selectedPlayer != null)
+            {
+                CharakterReposytory.DeletePlayer(_selectedPlayer);
+                Players.Remove(_selectedPlayer);
+                OnPropertyChanged(nameof(Players));
+                _selectedPlayer = null;
+                OnPropertyChanged(nameof(SelectedPlayer));
+
+            }
+        }
+
+        public void UpdatePlayer()
+        {
+                _selectedPlayer.Name = NewPlayerName;
+            CharakterReposytory.UpdatePlayer(_selectedPlayer);
+            Players = new ObservableCollection<Player>(CharakterReposytory.GetAllPlayers());
+            _selectedPlayer = null;
+            OnPropertyChanged(nameof(SelectedPlayer));
+            OnPropertyChanged(nameof(Players));
+
+        }
 
 
         public void AddCharakter()
@@ -100,6 +157,10 @@ namespace WpfApp1.ViewModel
             ShowSelectedCharakterCommand = new RelayCommand(ShoweSelectedCharakter, () =>_selectedPlayer != null && SelectedCharakter != null);
 
             RemoveSelectedCharakterCommand = new RelayCommand(RemoveSelectedCharakter, () =>_selectedPlayer != null && SelectedCharakter != null);
+
+            AddPlayerCommand = new RelayCommand(AddPlayer, () => !string.IsNullOrWhiteSpace(NewPlayerName));
+            RemoveSelectedPlayerCommand = new RelayCommand(RemoveSelectedPlayer, () => _selectedPlayer != null);
+            UpdatePlayerCommand = new RelayCommand(UpdatePlayer, () => _selectedPlayer != null && !string.IsNullOrWhiteSpace(NewPlayerName));
 
         }
     }

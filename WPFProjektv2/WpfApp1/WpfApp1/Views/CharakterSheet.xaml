@@ -110,27 +110,21 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
-
             <Button Content="Zapisz Zmiany" Command="{Binding SaveChangesCommand}" Margin="5"/>
-
             <StackPanel Orientation="Vertical" Margin="5">
                 <StackPanel Orientation="Horizontal" >
                     <TextBlock Text="Mod:" VerticalAlignment="Center" />
                     <TextBox Width="50" Text="{Binding RollModifier}" Margin="0 5 0 0" VerticalAlignment="Center"/>
+                </StackPanel>
+                <Button Content="Wykonaj rzut" Height="40"  Command="{Binding RollCommand}" Margin="5"></Button>
             </StackPanel>
-                
-            <Button Content="Wykonaj rzut" Height="40"  Command="{Binding RollCommand}" Margin="5"></Button>
-        </StackPanel>
-
-        <StackPanel >
+            <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="k6:"/>
                     <TextBox Width="50" Text="{Binding k6Count}"/>
                 </StackPanel>
-
                 <Button Content="Rzut na obrzarzenia" Command="{Binding DamegeRollCommand}" Margin="0 5 0 5"/>
                 <Button Content="Rut na utratę człowieczeństwa" Command="{Binding LostHumenityRollCommand}"/>
-
             </StackPanel>
 
         </StackPanel>

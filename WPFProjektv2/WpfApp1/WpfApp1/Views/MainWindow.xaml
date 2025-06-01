@@ -50,7 +50,7 @@
             <Button Margin="5" Content="Usuń Postać" Command="{Binding RemoveSelectedCharakterCommand}"></Button>
 
             <Separator Grid.Row="0" Grid.Column="1" Margin="0,5,0,5" Height="1" Background="Gray"/>
-            
+
             <StackPanel Orientation="Horizontal" Margin="10">
                 <TextBlock Text="Imię gracza:" DockPanel.Dock="Left"></TextBlock>
                 <TextBox Width="100" DockPanel.Dock="Right" Text="{Binding NewPlayerName}" Margin="5,0,0,0"/>
@@ -59,7 +59,5 @@
             <Button Margin="5" Content="Usuń Gracza" Command="{Binding RemoveSelectedPlayerCommand}"></Button>
             <Button Margin="5" Content="Zaktualizuj Gracza" Command="{Binding UpdatePlayerCommand}"></Button>
         </StackPanel>
-        
-        
     </Grid>
 </Window>

@@ -66,28 +66,24 @@ namespace WpfApp1.ViewModel
 
         public void AddPlayer()
         {
-            if (!string.IsNullOrWhiteSpace(NewPlayerName))
-            {
+
                 Player newPlayer = new Player { Name = NewPlayerName };
                 CharakterReposytory.AddPlayer(newPlayer);
                 Players.Add(newPlayer);
                 OnPropertyChanged(nameof(Players));
                 NewPlayerName = string.Empty;
                 OnPropertyChanged(nameof(NewPlayerName));
-            }
         }
 
         public void RemoveSelectedPlayer()
         {
-            if (_selectedPlayer != null)
-            {
+
                 CharakterReposytory.DeletePlayer(_selectedPlayer);
                 Players.Remove(_selectedPlayer);
                 OnPropertyChanged(nameof(Players));
                 _selectedPlayer = null;
                 OnPropertyChanged(nameof(SelectedPlayer));
 
-            }
         }
 
         public void UpdatePlayer()
